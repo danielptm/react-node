@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
+import Hello from './service/Hello';
 
 const app = express();
 app.use(express.static(path.join(__dirname, 'build')));
@@ -8,7 +9,7 @@ app.use(express.static(path.join(__dirname, 'build')));
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.get('/api', (req, res) => {
-  res.send(JSON.stringify({ 'greeting': 'Hello World!' }));
+  res.send(Hello.sayHi());
 });
 
 app.get('/', function (req, res) {
